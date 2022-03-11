@@ -38,10 +38,11 @@ public class AdminAutos extends Thread {
             if (avanzar) {
                 ganando.setMaximum(Integer.parseInt(largo.getText()));
                
+               
 
             }
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
             } catch (InterruptedException ex) {
 
             }
