@@ -9,16 +9,16 @@ import java.util.ArrayList;
 
 
 public class AdminBinarios {
-     private ArrayList<Autos> listaCorredores = new ArrayList();
+     private ArrayList<TiposdeAutos> listaCorredores = new ArrayList();
      File archivo = null;
      
      public AdminBinarios(String path) {
         archivo = new File(path);
     }
-      public ArrayList<Autos> getListaCorredores() {
+      public ArrayList<TiposdeAutos> getListaCorredores() {
         return listaCorredores;
     }
-      public void setListaCorredores(ArrayList<Autos> listaCorredores) {
+      public void setListaCorredores(ArrayList<TiposdeAutos> listaCorredores) {
         this.listaCorredores = listaCorredores;
     }
     
@@ -35,21 +35,21 @@ public class AdminBinarios {
         return "AdminBinarios{" + "listaCorredores=" + listaCorredores + ", archivo=" + archivo + '}';
     }
      
-    public void setAutos(Autos c) {
+    public void setAutos(TiposdeAutos c) {
         this.listaCorredores.add(c);
     }
     
     public void cargarArchivo() {
         try {            
             listaCorredores = new ArrayList();
-            Autos temp;
+            TiposdeAutos temp;
             if (archivo.exists()) {
                 FileInputStream entrada
                     = new FileInputStream(archivo);
                 ObjectInputStream objeto
                     = new ObjectInputStream(entrada);
                 try {
-                    while ((temp = (Autos) objeto.readObject()) != null) {
+                    while ((temp = (TiposdeAutos) objeto.readObject()) != null) {
                         listaCorredores.add(temp);
                     }
                 } catch (EOFException e) {

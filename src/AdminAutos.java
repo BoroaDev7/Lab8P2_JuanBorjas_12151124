@@ -1,4 +1,5 @@
 
+import java.util.Random;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 
@@ -9,7 +10,8 @@ public class AdminAutos extends Thread {
     private boolean avanzar;
     private boolean vive;
     private String tipo;
-    private int distancia;
+    private  Random num=new Random();
+   
 
     public AdminAutos(JProgressBar ganando,JTextField largo) {
         this.ganando = ganando;
@@ -17,9 +19,9 @@ public class AdminAutos extends Thread {
         avanzar=true;
         vive = true;
     }
-     public AdminAutos(String tipo,int distancia) {
+     public AdminAutos(String tipo) {
        this.tipo=tipo;
-       this.distancia=distancia;
+  
     }
 
     public boolean isAvanzar() {
@@ -56,9 +58,30 @@ public class AdminAutos extends Thread {
 
     }
     public int DistanciaRecorrida1(){
-      
-        
-        return 0;
+        try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+
+            }
+        return 30 + num.nextInt(161);
+    }
+    public int DistanciaRecorrida2(){
+  
+        try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+
+            }
+         return 20 + num.nextInt(181);
+    }
+    public int DistanciaRecorrida3(){
+  
+        try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+
+            }
+         return 20 + num.nextInt(181);
     }
     
 }

@@ -96,6 +96,8 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel7.setText("Nombre Corredor");
 
+        tiposAutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mcqueen", "Nascar", "Convertible" }));
+
         botonColor.setText("Color");
         botonColor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -236,41 +238,40 @@ public class Principal extends javax.swing.JFrame {
 
     private void botonGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarMouseClicked
         // TODO add your handling code here:
-        Autos corredores=new Autos()
+      TiposdeAutos mcqueen= new TiposdeAutos(tiposAutos.getSelectedItem().toString(),Integer.parseInt(numeroIdentificador.getText()),distancia,nombreCorredor.getText(),color);   
+         tipos.add(mcqueen);
+        DefaultComboBoxModel autitos=(DefaultComboBoxModel)cajaCorredores.getModel();
+        autitos.addElement(tipos); 
+        cajaCorredores.setModel(autitos);
+         admin.setListaCorredores(tipos);
+        admin.escribirArchivo();
+        
     }//GEN-LAST:event_botonGuardarMouseClicked
 
     private void botonColorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonColorMouseClicked
         // TODO add your handling code here:
         color=JColorChooser.showDialog(this,"Seleccione un Color", color);
         
+        
     }//GEN-LAST:event_botonColorMouseClicked
 
     private void botonComenzarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonComenzarMouseClicked
         // TODO add your handling code here:
        if(tiposAutos.getSelectedItem().equals("Mcqueen")){
-          distancia=autos.DistanciaRecorrida1(); 
-           
+          distancia=autos.DistanciaRecorrida1();  
+       }
+       else if(tiposAutos.getSelectedItem().equals("Nascar")){
+           distancia=autos.DistanciaRecorrida2();
+       }
+       else if(tiposAutos.getSelectedItem().equals("Convertible")) {
+           distancia=autos.DistanciaRecorrida3();
        }
        
         
     }//GEN-LAST:event_botonComenzarMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    
-    public void TiposDefinidos(){
-        
-        TiposdeAutos mcqueen= new TiposdeAutos("McQueen",Integer.parseInt(numeroIdentificador.getText()),distancia,nombreCorredor.getText(),color);
-         TiposdeAutos nascar= new TiposdeAutos("Nascar",Integer.parseInt(numeroIdentificador.getText()),distancia,nombreCorredor.getText(),color);
-         TiposdeAutos convertible= new TiposdeAutos("Convertible",Integer.parseInt(numeroIdentificador.getText()),distancia,nombreCorredor.getText(),color);
-         tipos.add(mcqueen);
-         tipos.add(nascar);
-         tipos.add(convertible);
-        DefaultComboBoxModel autitos=(DefaultComboBoxModel)tiposAutos.getModel();
-        autitos.addElement(tipos); 
-        tiposAutos.setModel(autitos);
-    }
+ 
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -334,4 +335,5 @@ public class Principal extends javax.swing.JFrame {
  AdminAutos autos;
  ArrayList<TiposdeAutos> tipos=new ArrayList();
  int distancia;
+ AdminBinarios admin;
 }
