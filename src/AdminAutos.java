@@ -8,12 +8,18 @@ public class AdminAutos extends Thread {
     private JTextField largo; 
     private boolean avanzar;
     private boolean vive;
+    private String tipo;
+    private int distancia;
 
     public AdminAutos(JProgressBar ganando,JTextField largo) {
         this.ganando = ganando;
         this.largo=largo;
         avanzar=true;
         vive = true;
+    }
+     public AdminAutos(String tipo,int distancia) {
+       this.tipo=tipo;
+       this.distancia=distancia;
     }
 
     public boolean isAvanzar() {
@@ -49,9 +55,10 @@ public class AdminAutos extends Thread {
         }
 
     }
-    public void DistanciaRecorrida(){
+    public int DistanciaRecorrida1(){
+      
         
-        
+        return 0;
     }
     
 }

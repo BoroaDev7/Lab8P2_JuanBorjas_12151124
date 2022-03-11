@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 public class Autos implements Serializable{
     private int numeroIdentificador;
-    private double distanciaRecorrida;
+    private int distanciaRecorrida;
     private String nombre;
     private Color color;
 
@@ -14,7 +14,7 @@ public class Autos implements Serializable{
     public Autos() {
     }
 
-    public Autos(int numeroIdentificador, double distanciaRecorrida, String nombre, Color color) {
+    public Autos(int numeroIdentificador, int distanciaRecorrida, String nombre, Color color) {
         this.numeroIdentificador = numeroIdentificador;
         this.distanciaRecorrida = distanciaRecorrida;
         this.nombre = nombre;
@@ -33,7 +33,7 @@ public class Autos implements Serializable{
         return distanciaRecorrida;
     }
 
-    public void setDistanciaRecorrida(double distanciaRecorrida) {
+    public void setDistanciaRecorrida(int distanciaRecorrida) {
         this.distanciaRecorrida = distanciaRecorrida;
     }
 

@@ -9,7 +9,7 @@ public class TiposdeAutos extends Autos   {
         super();
     }
 
-    public TiposdeAutos(String tipo, int numeroIdentificador, double distanciaRecorrida, String nombre, Color color) {
+    public TiposdeAutos(String tipo, int numeroIdentificador, int distanciaRecorrida, String nombre, Color color) {
         super(numeroIdentificador, distanciaRecorrida, nombre, color);
         this.tipo = tipo;
     }

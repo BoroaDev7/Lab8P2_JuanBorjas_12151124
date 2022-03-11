@@ -1,5 +1,7 @@
 
 import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JColorChooser;
 
 /*
@@ -60,6 +62,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 255, 204));
 
         botonComenzar.setText("Comenzar");
+        botonComenzar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonComenzarMouseClicked(evt);
+            }
+        });
 
         botonPausar.setText("Pausar");
 
@@ -238,12 +245,31 @@ public class Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonColorMouseClicked
 
+    private void botonComenzarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonComenzarMouseClicked
+        // TODO add your handling code here:
+       if(tiposAutos.getSelectedItem().equals("Mcqueen")){
+          distancia=autos.DistanciaRecorrida1(); 
+           
+       }
+       
+        
+    }//GEN-LAST:event_botonComenzarMouseClicked
+
     /**
      * @param args the command line arguments
      */
     
     public void TiposDefinidos(){
-        TiposdeAutos mcqueen= new TiposdeAutos("McQueen",Integer.parseInt(numeroIdentificador.getText()),nombreCorredor.getText(),color);
+        
+        TiposdeAutos mcqueen= new TiposdeAutos("McQueen",Integer.parseInt(numeroIdentificador.getText()),distancia,nombreCorredor.getText(),color);
+         TiposdeAutos nascar= new TiposdeAutos("Nascar",Integer.parseInt(numeroIdentificador.getText()),distancia,nombreCorredor.getText(),color);
+         TiposdeAutos convertible= new TiposdeAutos("Convertible",Integer.parseInt(numeroIdentificador.getText()),distancia,nombreCorredor.getText(),color);
+         tipos.add(mcqueen);
+         tipos.add(nascar);
+         tipos.add(convertible);
+        DefaultComboBoxModel autitos=(DefaultComboBoxModel)tiposAutos.getModel();
+        autitos.addElement(tipos); 
+        tiposAutos.setModel(autitos);
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -305,4 +331,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> tiposAutos;
     // End of variables declaration//GEN-END:variables
  Color color=null;
+ AdminAutos autos;
+ ArrayList<TiposdeAutos> tipos=new ArrayList();
+ int distancia;
 }
