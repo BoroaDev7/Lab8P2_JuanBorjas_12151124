@@ -73,6 +73,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         botonPausar.setText("Pausar");
+        botonPausar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonPausarMouseClicked(evt);
+            }
+        });
 
         jLabel1.setText("Pista:");
 
@@ -131,6 +136,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         botonReiniciar.setText("Reiniciar");
+        botonReiniciar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonReiniciarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -253,20 +263,26 @@ public class Principal extends javax.swing.JFrame {
     private void botonGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarMouseClicked
         // TODO add your handling code here:
       
-         if(tiposAutos.getSelectedItem().equals("Mcqueen")){
-             distancia=autos.DistanciaRecorrida1(); }
-         TiposdeAutos mcqueen= new TiposdeAutos(tiposAutos.getSelectedItem().toString(),Integer.parseInt(numeroIdentificador.getText()),distancia,nombreCorredor.getText(),color);   
-         tipos.add(mcqueen);
+       
+         TiposdeAutos car= new TiposdeAutos(tiposAutos.getSelectedItem().toString(),Integer.parseInt(numeroIdentificador.getText()),distancia,nombreCorredor.getText(),color);   
+         tipos.add(car);
         DefaultComboBoxModel autitos=(DefaultComboBoxModel)cajaCorredores.getModel();
-        autitos.addElement(tipos); 
+        autitos.addElement(car.getNumeroIdentificador()); 
         cajaCorredores.setModel(autitos);
+       
         try {
-         admin.setListaCorredores(tipos);
+        admin= new AdminBinarios("./Corredores.cbm");
+        admin.cargarArchivo();
+        admin.setListaCorredores(tipos);
         admin.escribirArchivo();
             JOptionPane.showMessageDialog(this, "Equipo agregado Exitosamente");
         } catch (Exception ex) {
            JOptionPane.showMessageDialog(this, "Nose puede agregar el Equipo");
         }
+        numeroIdentificador.setText("");
+        nombreCorredor.setText("");
+        color=null;
+        
         
         
     }//GEN-LAST:event_botonGuardarMouseClicked
@@ -280,15 +296,12 @@ public class Principal extends javax.swing.JFrame {
 
     private void botonComenzarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonComenzarMouseClicked
         // TODO add your handling code here:
-       if(tiposAutos.getSelectedItem().equals("Mcqueen")){
-          distancia=autos.DistanciaRecorrida1();  
-       }
-       else if(tiposAutos.getSelectedItem().equals("Nascar")){
-           distancia=autos.DistanciaRecorrida2();
-       }
-       else if(tiposAutos.getSelectedItem().equals("Convertible")) {
-           distancia=autos.DistanciaRecorrida3();
-       }
+        if(tiposAutos.getSelectedItem().equals("Mcqueen")){
+             distancia=autos.DistanciaRecorrida1(); }
+         else if(tiposAutos.getSelectedItem().equals("Nascar")){
+             distancia=autos.DistanciaRecorrida2(); }
+         else if(tiposAutos.getSelectedItem().equals("Convertible")){
+             distancia=autos.DistanciaRecorrida3(); }
        
         
     }//GEN-LAST:event_botonComenzarMouseClicked
@@ -320,6 +333,24 @@ public class Principal extends javax.swing.JFrame {
          largoPista.setText("");
         }
     }//GEN-LAST:event_botonUsarPistaMouseClicked
+
+    private void botonReiniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonReiniciarMouseClicked
+        // TODO add your handling code here:
+        labelNombrePista.setText("_____") ;
+          labelLargoPista.setText("_____");
+         nombrePista.setText("");
+         largoPista.setText("");
+         DefaultTableModel comb= (DefaultTableModel)tablaCorredores.getModel();
+        String []arr= new String[3];
+        arr[0]=" ";
+        arr[1]=" ";
+        arr[2]=" ";       
+        comb.addRow(arr);
+    }//GEN-LAST:event_botonReiniciarMouseClicked
+
+    private void botonPausarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPausarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonPausarMouseClicked
 
  
 

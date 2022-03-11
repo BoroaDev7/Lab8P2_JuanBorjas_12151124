@@ -69,7 +69,7 @@ public class AdminBinarios {
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            for (Autos t : listaCorredores) {
+            for (TiposdeAutos t : listaCorredores) {
                 bw.writeObject(t);
             }
             bw.flush();

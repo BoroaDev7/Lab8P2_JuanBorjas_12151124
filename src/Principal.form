@@ -183,6 +183,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Pausar"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonPausarMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
@@ -314,6 +317,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Reiniciar"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonReiniciarMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
