@@ -310,10 +310,14 @@ public class Principal extends javax.swing.JFrame {
         if(nombrePista.getText().isBlank() && largoPista.getText().isBlank() ){
           labelNombrePista.setText("_____") ;
           labelLargoPista.setText("_____");
+          JOptionPane.showMessageDialog(null, "Nose puede agregar ya que esta vacia");
         }
         else{
         labelNombrePista.setText(nombrePista.getText());
         labelLargoPista.setText(String.valueOf(largoPista.getText()));
+         JOptionPane.showMessageDialog(null, "Pista Agregada!");
+         nombrePista.setText("");
+         largoPista.setText("");
         }
     }//GEN-LAST:event_botonUsarPistaMouseClicked
 
