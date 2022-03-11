@@ -1,15 +1,17 @@
 
 import javax.swing.JProgressBar;
+import javax.swing.JTextField;
 
 
 public class AdminAutos extends Thread {
     private JProgressBar ganando;
-     
+    private JTextField largo; 
     private boolean avanzar;
     private boolean vive;
 
-    public AdminAutos(JProgressBar ganando) {
+    public AdminAutos(JProgressBar ganando,JTextField largo) {
         this.ganando = ganando;
+        this.largo=largo;
         avanzar=true;
         vive = true;
     }
@@ -30,15 +32,12 @@ public class AdminAutos extends Thread {
         this.vive = vive;
     }
     
+    
     public void run() {
         while (vive) {
             if (avanzar) {
-                ganando.setValue(Math.round(Integer.parseInt(
-                        sp_velocidad.getValue().toString())
-                        * (progBar_t.getValue() / 60))
-                );
-                progBar_d.setString(Integer.toString(
-                        progBar_d.getValue()) + " Kilometros");
+                ganando.setMaximum(Integer.parseInt(largo.getText()));
+               
 
             }
             try {
@@ -48,6 +47,10 @@ public class AdminAutos extends Thread {
             }
         }
 
+    }
+    public void DistanciaRecorrida(){
+        
+        
     }
     
 }
