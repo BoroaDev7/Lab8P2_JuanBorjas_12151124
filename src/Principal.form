@@ -240,6 +240,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonAgregarMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -303,6 +306,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Usar Pista"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonUsarPistaMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonReiniciar">
           <Properties>

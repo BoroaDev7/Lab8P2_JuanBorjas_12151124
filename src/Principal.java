@@ -1,8 +1,12 @@
 
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JColorChooser;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -89,6 +93,11 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablaCorredores);
 
         botonAgregar.setText("Agregar");
+        botonAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonAgregarMouseClicked(evt);
+            }
+        });
 
         jLabel5.setText("Nombre Pista");
 
@@ -115,6 +124,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel8.setText("Largo");
 
         botonUsarPista.setText("Usar Pista");
+        botonUsarPista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonUsarPistaMouseClicked(evt);
+            }
+        });
 
         botonReiniciar.setText("Reiniciar");
 
@@ -238,20 +252,29 @@ public class Principal extends javax.swing.JFrame {
 
     private void botonGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarMouseClicked
         // TODO add your handling code here:
-      TiposdeAutos mcqueen= new TiposdeAutos(tiposAutos.getSelectedItem().toString(),Integer.parseInt(numeroIdentificador.getText()),distancia,nombreCorredor.getText(),color);   
+      
+         if(tiposAutos.getSelectedItem().equals("Mcqueen")){
+             distancia=autos.DistanciaRecorrida1(); }
+         TiposdeAutos mcqueen= new TiposdeAutos(tiposAutos.getSelectedItem().toString(),Integer.parseInt(numeroIdentificador.getText()),distancia,nombreCorredor.getText(),color);   
          tipos.add(mcqueen);
         DefaultComboBoxModel autitos=(DefaultComboBoxModel)cajaCorredores.getModel();
         autitos.addElement(tipos); 
         cajaCorredores.setModel(autitos);
+        try {
          admin.setListaCorredores(tipos);
         admin.escribirArchivo();
+            JOptionPane.showMessageDialog(this, "Equipo agregado Exitosamente");
+        } catch (Exception ex) {
+           JOptionPane.showMessageDialog(this, "Nose puede agregar el Equipo");
+        }
+        
         
     }//GEN-LAST:event_botonGuardarMouseClicked
 
     private void botonColorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonColorMouseClicked
         // TODO add your handling code here:
         color=JColorChooser.showDialog(this,"Seleccione un Color", color);
-        
+        botonColor.setBackground(color);
         
     }//GEN-LAST:event_botonColorMouseClicked
 
@@ -269,6 +292,30 @@ public class Principal extends javax.swing.JFrame {
        
         
     }//GEN-LAST:event_botonComenzarMouseClicked
+
+    private void botonAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarMouseClicked
+        // TODO add your handling code here: 
+        DefaultComboBoxModel autitos=(DefaultComboBoxModel)cajaCorredores.getModel();
+        DefaultTableModel comb= (DefaultTableModel)tablaCorredores.getModel();
+        String []arr= new String[3];
+        int pos=cajaCorredores.getSelectedIndex();
+        arr[0]=String.valueOf(tipos.get(pos).getNumeroIdentificador());
+        arr[1]=tipos.get(pos).getNombre();
+        arr[2]=String.valueOf(tipos.get(pos).getDistanciaRecorrida()+tipos.get(pos).getDistanciaRecorrida());       
+        comb.addRow(arr);
+    }//GEN-LAST:event_botonAgregarMouseClicked
+
+    private void botonUsarPistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonUsarPistaMouseClicked
+        // TODO add your handling code here:
+        if(nombrePista.getText().isBlank() && largoPista.getText().isBlank() ){
+          labelNombrePista.setText("_____") ;
+          labelLargoPista.setText("_____");
+        }
+        else{
+        labelNombrePista.setText(nombrePista.getText());
+        labelLargoPista.setText(String.valueOf(largoPista.getText()));
+        }
+    }//GEN-LAST:event_botonUsarPistaMouseClicked
 
  
 
