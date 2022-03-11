@@ -4,7 +4,7 @@ import javax.swing.JProgressBar;
 
 public class AdminAutos extends Thread {
     private JProgressBar ganando;
-    private JProgressBar 
+     
     private boolean avanzar;
     private boolean vive;
 

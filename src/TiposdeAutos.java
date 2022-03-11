@@ -2,7 +2,7 @@
 import java.awt.Color;
 
 
-public class TiposdeAutos extends Autos implements {
+public class TiposdeAutos extends Autos   {
     private String tipo;
 
     public TiposdeAutos(String tipo) {
