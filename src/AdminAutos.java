@@ -45,7 +45,7 @@ public class AdminAutos extends Thread {
         while (vive) {
             if (avanzar) {
                 ganando.setMaximum(Integer.parseInt(largo.getText()));
-               
+                
                
 
             }

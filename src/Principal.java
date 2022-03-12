@@ -97,6 +97,11 @@ public class Principal extends javax.swing.JFrame {
                 "Identificador", "Corredor", "Distancia"
             }
         ));
+        tablaCorredores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaCorredoresMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaCorredores);
 
         botonAgregar.setText("Agregar");
@@ -270,12 +275,13 @@ public class Principal extends javax.swing.JFrame {
              numeroIdentificador.setText("");
          }
          TiposdeAutos car= new TiposdeAutos(tiposAutos.getSelectedItem().toString(),Integer.parseInt(numeroIdentificador.getText()),distancia,nombreCorredor.getText(),color);   
-         tipos.add(car);
+         
     
         try {
         admin= new AdminBinarios("./Corredores.cbm");
         admin.cargarArchivo();
-        admin.setListaCorredores(tipos);
+        tipos.add(car);
+        admin.setListaCorredores(car);
         admin.escribirArchivo();
         aniadirCarros();
             JOptionPane.showMessageDialog(this, "Equipo agregado Exitosamente");
@@ -299,13 +305,29 @@ public class Principal extends javax.swing.JFrame {
 
     private void botonComenzarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonComenzarMouseClicked
         // TODO add your handling code here:
+        admin.cargarArchivo();
+    
+       int pos= tablaCorredores.getSelectedRow();
         if(tiposAutos.getSelectedItem().equals("Mcqueen")){
-             distancia=autos.DistanciaRecorrida1(); }
+             barraCorredores.setBackground(admin.getListaCorredores().get(pos).getColor());
+        barraCorredores.setMaximum(Integer.parseInt(largoPista.getText())); 
+            distancia=autos.DistanciaRecorrida1(); 
+        barraCorredores.setValue((int) admin.getListaCorredores().get(pos).getDistanciaRecorrida());
+    }
          else if(tiposAutos.getSelectedItem().equals("Nascar")){
-             distancia=autos.DistanciaRecorrida2(); }
+              barraCorredores.setBackground(admin.getListaCorredores().get(pos).getColor());
+        barraCorredores.setMaximum(Integer.parseInt(largoPista.getText()));
+             distancia=autos.DistanciaRecorrida2(); 
+             barraCorredores.setValue((int) admin.getListaCorredores().get(pos).getDistanciaRecorrida());
+         }
          else if(tiposAutos.getSelectedItem().equals("Convertible")){
-             distancia=autos.DistanciaRecorrida3(); }
-       
+         barraCorredores.setBackground(admin.getListaCorredores().get(pos).getColor());
+        barraCorredores.setMaximum(Integer.parseInt(largoPista.getText()));
+             distancia=autos.DistanciaRecorrida3(); 
+         barraCorredores.setValue((int) admin.getListaCorredores().get(pos).getDistanciaRecorrida());
+         }
+        
+ 
         
     }//GEN-LAST:event_botonComenzarMouseClicked
 
@@ -361,17 +383,27 @@ public class Principal extends javax.swing.JFrame {
           labelLargoPista.setText("_____");
          nombrePista.setText("");
          largoPista.setText("");
-         DefaultTableModel comb= (DefaultTableModel)tablaCorredores.getModel();
+        DefaultTableModel comb= (DefaultTableModel)tablaCorredores.getModel();
         String []arr= new String[3];
         arr[0]=" ";
         arr[1]=" ";
-        arr[2]=" ";       
+        arr[2]=" ";   
+       for(int i=0;i<=comb.getRowCount();i++){
+          comb.removeRow(i); 
+       }
         comb.addRow(arr);
+      
     }//GEN-LAST:event_botonReiniciarMouseClicked
 
     private void botonPausarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPausarMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_botonPausarMouseClicked
+
+    private void tablaCorredoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCorredoresMouseClicked
+        // TODO add your handling code here:
+       
+       
+    }//GEN-LAST:event_tablaCorredoresMouseClicked
 
  
 

@@ -35,7 +35,7 @@ public class AdminBinarios {
         return "AdminBinarios{" + "listaCorredores=" + listaCorredores + ", archivo=" + archivo + '}';
     }
      
-    public void setAutos(TiposdeAutos c) {
+    public void setTiposAutos(TiposdeAutos c) {
         this.listaCorredores.add(c);
     }
     
@@ -81,6 +81,10 @@ public class AdminBinarios {
             } catch (Exception ex) {
             }
         }
+    }
+
+    public void setListaCorredores(TiposdeAutos car) {
+        this.listaCorredores.add(car);
     }
     
 }
